@@ -1,0 +1,26 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="analyze()">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+        <mat-slide-toggle formControlName="useRestApi">Use Rest API</mat-slide-toggle>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
+        <mat-button-toggle-group appearance="legacy" formControlName="letterGroup">
+          <mat-button-toggle [value]="1">Vowels</mat-button-toggle>
+          <mat-button-toggle [value]="2">Consonants</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <input formControlName="inputText" matInput type="text" placeholder="Your text...">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <div class="col justify-content-end">
+        <button class="float-end" matButton="filled" type="submit">Analyze</button>
+      </div>
+    </div>
+  </form>
+  <app-result [resultMap$]="resultMap$">></app-result>
+</div>

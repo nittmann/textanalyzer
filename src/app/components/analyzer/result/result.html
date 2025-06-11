@@ -1,0 +1,10 @@
+<!--<ul>-->
+<!--  <li *ngFor="let entry of resultMap$ | keyvalue">-->
+<!--    {{ entry.key }}: {{ entry.value }}-->
+<!--  </li>-->
+<!--</ul>-->
+<mat-list role="list">
+  <mat-list-item role="listitem" *ngFor="let entry of resultMap$ | keyvalue">
+    Letter '{{ entry.key }}' appears {{ entry.value }} times.
+  </mat-list-item>
+</mat-list>
