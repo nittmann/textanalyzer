@@ -1,10 +1,17 @@
-<!--<ul>-->
-<!--  <li *ngFor="let entry of resultMap$ | keyvalue">-->
-<!--    {{ entry.key }}: {{ entry.value }}-->
-<!--  </li>-->
-<!--</ul>-->
-<mat-list role="list">
-  <mat-list-item role="listitem" *ngFor="let entry of resultMap$ | keyvalue">
-    Letter '{{ entry.key }}' appears {{ entry.value }} times.
-  </mat-list-item>
+@if (unrecognizedLetters.size > 0) {
+  <div id="unrecognized-letters">
+    Unrecognized Characters:
+    @for (item of unrecognizedLetters; track item) {
+      {{ item }} @if (!$last) {, }
+    }
+  </div>
+  <mat-divider></mat-divider>
+}
+
+<mat-list id="result-list" role="list">
+  @for (entry of resultMap | keyvalue; track entry.key) {
+    <mat-list-item role="listitem">
+      Letter '{{ entry.key }}' appears {{ entry.value }} times.
+    </mat-list-item>
+  }
 </mat-list>

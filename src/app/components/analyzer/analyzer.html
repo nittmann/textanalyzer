@@ -5,7 +5,7 @@
         <mat-slide-toggle formControlName="useRestApi">Use Rest API</mat-slide-toggle>
       </div>
       <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-3">
-        <mat-button-toggle-group appearance="legacy" formControlName="letterGroup">
+        <mat-button-toggle-group appearance="legacy" formControlName="letterType">
           <mat-button-toggle [value]="1">Vowels</mat-button-toggle>
           <mat-button-toggle [value]="2">Consonants</mat-button-toggle>
         </mat-button-toggle-group>
@@ -13,14 +13,20 @@
     </div>
     <div class="row">
       <mat-form-field>
-        <input formControlName="inputText" matInput type="text" placeholder="Your text...">
+        <input formControlName="inputText" #inputText matInput maxlength="2000" type="text" placeholder="Your text...">
+        <mat-hint align="end">{{inputText.value.length}} / 2000</mat-hint>
       </mat-form-field>
     </div>
     <div class="row">
-      <div class="col justify-content-end">
+      <div class="col justify-content-end mb-3">
         <button class="float-end" matButton="filled" type="submit">Analyze</button>
       </div>
     </div>
   </form>
-  <app-result [resultMap$]="resultMap$">></app-result>
+  @for (alert of errors; track alert) {
+    <div class="alert alert-{{alert.code}} alert-dismissible fade show" role="alert">
+      {{ alert.message }}
+    </div>
+  }
+  <app-result [resultMap]="resultMap$" [unrecognizedLetters]="unrecognizedLetters$"></app-result>
 </div>
